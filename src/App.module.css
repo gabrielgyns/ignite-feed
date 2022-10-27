@@ -1,0 +1,29 @@
+.wrapper {
+    max-width: 70rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    display: grid;
+    grid-template-columns: 256px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    html {
+        /*
+            Como estamos utilizando o "rem" que é uma unidade relativa em relação ao font-size do html, temos o poder de alterar toda font-size da aplicação automaticamente em relação ao que definirmos no html.
+            Dessa forma, podemos pensar que o padrão que estamos utilizando seja 16px e ao aplicar a responsividade queremos que seja em cima de 14px, podemos dizer isso em percentual para não aplicar o valor bruto:
+            16px -> 100%
+            14px -> x
+            16x = 14 * 100%  
+            x = 1400 / 16
+            x = 87.5% (não considere o % como realmente % please lol)
+        */
+        font-size: 87.5%;
+    }
+
+    .wrapper {
+       grid-template-columns: 1fr; 
+    }
+}
