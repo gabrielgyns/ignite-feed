@@ -1,12 +1,28 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css';
 
+interface Author {
+    name: string;
+    role: string;
+    avatarUrl: string;
+}
 
-export function Post({ author, content, publishedAt }) {
+interface Content {
+    type: 'paragraph' | 'link';
+    content: string;
+}
+
+interface PostProps {
+    author: Author;
+    publishedAt: Date;
+    content: Content[];
+}
+
+export function Post({ author, content, publishedAt }: PostProps) {
     const [comments, setComments] = useState([
         'Muito bom, parabéns!! 👏👏',
         'Perfeito, obrigado',
@@ -21,25 +37,25 @@ export function Post({ author, content, publishedAt }) {
 
     });
 
-    function handleCreateNewComment() {
+    function handleCreateNewComment(event: FormEvent) {
         event.preventDefault();
 
         setNewCommentText('');
         setComments([...comments, newCommentText]);
     }
 
-    function handleNewCommentChange() {
+    function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
         event.target.setCustomValidity('');
         setNewCommentText(event.target.value);
     }
 
-    function handleNewCommentInvalid() {
+    function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
         event.target.setCustomValidity('Esse campo é obrigatório!');
     }
 
-    function deleteComment(comment) {
+    function deleteComment(commentToDelete: string) {
         // Imutabilidade -> as variáveis não sofrem mutação, nós criamos um novo valor (novo espaço na memória)
-        const commentsWithoutDeletedOne = comments.filter(item => item !== comment);
+        const commentsWithoutDeletedOne = comments.filter(item => item !== commentToDelete);
         setComments(commentsWithoutDeletedOne);
     }
 
@@ -69,7 +85,7 @@ export function Post({ author, content, publishedAt }) {
                     if (line.type === 'paragraph') {
                         return <p key={line.content + idx}>{line.content}</p>;
                     } else if (line.type === 'link') {
-                        return <p key={line.contet + idx}><a href='#'>{line.content}</a></p>
+                        return <p key={line.content + idx}><a href='#'>{line.content}</a></p>
                     }
                 })}
             </div>
