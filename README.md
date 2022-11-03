@@ -1,4 +1,4 @@
-# <center>Ignite Feed</center>
+# Ignite Feed
 Ignite Feed is an application created at Ignite Bootcamp (Rocketseat) to understand better the first concepts around ReactJS. <br />
 
 <hr />
@@ -9,11 +9,11 @@ We have access to a layout in Figma so that we can follow the criteria presented
 
 After the development of the entire module, the following result was obtained:
 
-<center><img src="./_for_readme/general-view.png" width="700" /></center>
+<img src="./_for_readme/general-view.png" width="700" />
 
 <br />
 
-<center><img src="./_for_readme/comments.png" width="500" /></center>
+<img src="./_for_readme/comments.png" width="500" />
 
 
 <hr />
@@ -43,8 +43,6 @@ The concepts that we worked on this modules, it's basics from Front-end, React a
 - Using TypeScript
 - Interfaces
 - Extending Interfaces from HTML Attributes
-
-
 
 <hr />
 
